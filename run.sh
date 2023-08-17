@@ -1,3 +1,4 @@
+# This is an example file
 set -ex
 set -v #verbose
 TAG=${TAG:-"pdfsigning"}
