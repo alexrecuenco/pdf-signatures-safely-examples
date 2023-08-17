@@ -16,9 +16,11 @@ We are using VERY sensitive information, so we would like it to be somewhat safe
 
 For that, the intention is to run this in a docker image such that:
 
-- ✅ No internet connection can be made
+- ✅ No internet connection can be made while signing
 - ✅ The secret data is not included in the build
 - ❌ Preventing escalation (not done)
+
+NOTE: What we don't trust in this scenario is just running the commands, and putting our passwords for our certificate files in the open, we would rather isolate it a bit. This is not perfect, if you are extremely concerned about these certificates and you can afford a usb-based authenthicator (similar to Trezor) then please do, it simplifies a lot of things
 
 ## Requirements
 
