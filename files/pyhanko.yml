@@ -1,0 +1,9 @@
+# Config options https://pyhanko.readthedocs.io/en/latest/cli-guide/config.html
+
+stamp-styles:
+    default:
+        type: text
+        background: signature.png # for some reason acrobat reader doesnt like this?
+        # stamp-text: "Signed by %(signer)s\nTimestamp: %(ts)s"
+        # text-box-style:
+        #     font: NotoSerif-Regular.otf

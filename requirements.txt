@@ -1,0 +1,3 @@
+pyHanko
+# pyHanko[opentype] # if you are using custom fonts,
+Pillow # For custom images
