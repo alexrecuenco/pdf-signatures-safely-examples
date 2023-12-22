@@ -56,7 +56,13 @@ Add your certificate file(s) inside the folder files/,
 
 Modify the [`signature.png`](./files/signature.png) to whatever signature you use
 
-An example is provided, taking almost verbatim from pyhanko's website. See the pyhanko.yml for further information in how to modify it
+An example is provided, taking almost verbatim from pyhanko's website. See the pyhanko.yml for further information in how to modify it.
+
+```bash
+# To get it to not reflect changes
+git update-index --assume-unchanged files/pyhanko.yml
+# To revert back those changes
+git update-index --no-assume-unchanged files/pyhanko.yml```
 
 (That signature is fake, not my real signature btw)
 
@@ -86,6 +92,14 @@ pyhanko sign addsig --field "-1/100,200,300,700/Signature" pkcs12 \
     input.pdf output.pdf secrets.p12
 ```
 
+
+### Validations
+
+
+Requires network to fetch certificates (or download certiccates and add to chain first)
+```bash
+pyhanko sign validate "files/output.pdf"
+```
 #### Multiple
 
 It is not working as intended, note how the example here just uses one signature file, it is just testing, it obviously doesn't make sense to have just one file, you are meant to use one for each person
