@@ -5,4 +5,4 @@ TAG=${TAG:-"pdfsigning"}
 
 # : ${A:=hello} ':' is no-op, another way to do it
 
-docker run --rm -i -t -v ./files:/app/files --network none "$TAG" /bin/sh
+docker run --rm -i -t -v ./files:/app/ --network none "$TAG"

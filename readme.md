@@ -40,7 +40,9 @@ Run [`run.sh`](./run.sh)
 Use the command demondstrated in [`run.sh`](./run.sh), it should look something like
 
 ```
-docker run --rm -i -t -v ./files:/app/files --network none "$TAG" /bin/sh
+TAG=${TAG:-"pdfsigning"}
+docker build -t $TAG .
+docker run --rm -i -t -v ./files:/app/ --network none "$TAG"
 cd files
 ```
 
@@ -88,10 +90,9 @@ Example
 
 ```bash
 # -1 implies the last page
-pyhanko sign addsig --field "-1/100,200,300,700/Signature" pkcs12 \
+pyhanko sign addsig --field "-1/150,50,375,250/SignatureAlex" pkcs12 \
     input.pdf output.pdf secrets.p12
 ```
-
 
 ### Validations
 
