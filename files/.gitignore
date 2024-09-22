@@ -1,5 +1,6 @@
 *.pdf
 *.p12
 *.png
+*.log
 !signature.png
 !pyhanko.yml
