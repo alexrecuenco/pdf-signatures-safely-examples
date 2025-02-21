@@ -3,12 +3,12 @@
 
 Using
 
-https://pyhanko.readthedocs.io/en/latest/cli-guide/signing.html#signing-a-pdf-file-using-key-material-on-disk
+<https://pyhanko.readthedocs.io/en/latest/cli-guide/signing.html#signing-a-pdf-file-using-key-material-on-disk>
 
 You need:
 
 - docker
-- A certificate file (.p12) or (.pem) or similar
+- A certificate file (`.p12`) or (`.pem`) or similar
 
 ## Safety
 
@@ -20,7 +20,7 @@ For that, the intention is to run this in a docker image such that:
 - ✅ The secret data is not included in the build
 - ❌ Preventing escalation (not done)
 
-NOTE: What we don't trust in this scenario is just running the commands, and putting our passwords for our certificate files in the open, we would rather isolate it a bit. This is not perfect, if you are extremely concerned about these certificates and you can afford a usb-based authenthicator (similar to Trezor) then please do, it simplifies a lot of things
+NOTE: What we don't trust in this scenario is just running the commands, and putting our passwords for our certificate files in the open, we would rather isolate it a bit. This is not perfect, if you are extremely concerned about these certificates and you can afford a usb-based authenticator (similar to Trezor) then please do, it simplifies a lot of things
 
 ## Requirements
 
@@ -34,12 +34,11 @@ run the [`build.sh`](./build.sh)
 
 Run [`run.sh`](./run.sh)
 
-
 ## To use
 
-Use the command demondstrated in [`run.sh`](./run.sh), it should look something like
+Use the command demonstrated in [`run.sh`](./run.sh), it should look something like
 
-```
+```bash
 TAG=${TAG:-"pdfsigning"}
 docker build -t $TAG .
 docker run --rm -i -t -v ./files:/app/ --network none "$TAG"
@@ -52,23 +51,25 @@ And now you run commands in your docker image, but modify things inside the  fil
 
 Add your certificate file(s) inside the folder files/,
 
-**WARN: make sure you don't commit it by mistake, the git and docker ignore files are telling you not to do it**
+> !WARN
+> **WARN: make sure you don't commit it by mistake, the git and docker ignore files are telling you not to do it**
 
 ### Attach custom signature
 
 Modify the [`signature.png`](./files/signature.png) to whatever signature you use
 
-An example is provided, taking almost verbatim from pyhanko's website. See the pyhanko.yml for further information in how to modify it.
+An example is provided, taking almost verbatim from `pyhanko`'s website. See the `pyhanko.yml` for further information in how to modify it.
 
 ```bash
 # To get it to not reflect changes
 git update-index --assume-unchanged files/pyhanko.yml
 # To revert back those changes
-git update-index --no-assume-unchanged files/pyhanko.yml```
+git update-index --no-assume-unchanged files/pyhanko.yml
+```
 
 (That signature is fake, not my real signature btw)
 
-### Example with .pem files
+### Example with `.pem` files
 
 Invisible
 
@@ -96,11 +97,14 @@ pyhanko sign addsig --field "-1/150,50,375,250/SignatureAlex" pkcs12 \
 
 ### Validations
 
+Requires network to fetch certificates (or download certificates and add to chain first)
 
-Requires network to fetch certificates (or download certiccates and add to chain first)
 ```bash
-pyhanko sign validate "files/output.pdf"
+pyhanko sign validate "output.pdf"
 ```
+
+Remember to compress on zip before adding it to notes, since otherwise Apple Notes modifies it and destroys all signatures.
+
 #### Multiple
 
 It is not working as intended, note how the example here just uses one signature file, it is just testing, it obviously doesn't make sense to have just one file, you are meant to use one for each person
@@ -121,10 +125,10 @@ pyhanko sign addsig \
 
 It doesn't work (note how this is silly)
 
-
 ##### Second attempt
 
 First create the fields
+
 ```bash
 # --field PABE/X1,Y1,X2,Y2/FieldName Y=0 is at the bottom of the page
 pyhanko sign addfields \
